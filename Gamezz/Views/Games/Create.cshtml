@@ -1,0 +1,54 @@
+﻿@model Gamezz.Models.Games
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Games</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" type="number" />
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-12 for="Publisher">Publisher</label>
+                <div class="col-md-10"></div>
+                @Html.DropDownListFor(model => model.Publisher.Id, new SelectList(@ViewBag.Publisher, "Id", "Name"), "Select Publisher")
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-12 for="PG">PG</label>
+                <div class="col-md-10"></div>
+                @Html.DropDownListFor(model => model.Pg.Id, new SelectList(@ViewBag.Pg, "Id", "AgeRestriction"), "Select Pg")
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-12 for="Category">Category</label>
+                <div class="col-md-10"></div>
+                @Html.DropDownListFor(model => model.Category, new SelectList(@ViewBag.Category, "Id", "Name"), "Select Category")
+            </div>
+       
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

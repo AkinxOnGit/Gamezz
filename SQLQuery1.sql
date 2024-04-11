@@ -1,0 +1,1 @@
+﻿alter table Orders  drop constraint [DF__Orders__Invoice__73852659]; alter table Orders alter column Invoice varchar(255) NULL;

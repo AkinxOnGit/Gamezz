@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Gamezz.Models.Games>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+	<a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.Name)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Price)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Publisher)
+			</th>
+			<th>
+				Age Restriction
+			</th>
+			<th>
+
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var game in Model)
+		{
+			<tr>
+				<td>
+					<h4 style="font: bold">@game.Name</h4>
+
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => game.Price)
+
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => game.Publisher.Name)
+
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => game.Pg.AgeRestriction)
+
+				</td>
+				<td>
+					<div style="display: flex; align-items: center; justify-content: flex-end">
+						<form asp-action="Buy" asp-route-gameId="@game.Id" method="post">
+							<button class="btn btn-primary" style="background-color: forestgreen; margin-right: 10px;" type="submit">Zum Warenkorb</button>
+						</form>
+						<a class="btn btn-info" style="margin-right: 10px; color: white" asp-action="Edit" asp-route-id="@game.Id">Edit</a>
+						<a class="btn btn-dark" style="margin-right: 10px;" asp-action="Details" asp-route-id="@game.Id">Details</a>
+						<a class="btn btn-danger" style="margin-right: 10px;" asp-action="Delete" asp-route-id="@game.Id">Delete</a>
+					</div>
+				</td>
+				
+			</tr>
+
+		}
+	</tbody>
+</table>
